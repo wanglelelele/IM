@@ -1,0 +1,43 @@
+.current-conversation{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background: #f6f7fb;
+    color: #333333;
+    .header{
+        border-bottom: 1px solid #e7e7e7;
+        height: 50px;
+        position: relative;
+        .name{
+            padding: 0 20px;
+            color: #1c2438;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 50px;
+        }
+    }
+    .content{
+        flex:1;
+        overflow: hidden;
+        .msg-list{
+            box-sizing: border-box;
+            overflow-y: scroll;
+            padding: 0 20px;
+            height: 100%;
+        }
+
+    }
+    .footer{
+        background: #ffffff;
+        border-top: 1px solid #e7e7e7;
+        .bottom-content{
+            .input-box{
+                border: none;
+                width: 100%;
+                outline: none;
+                background-color: transparent;
+                resize: none;
+            }
+        }
+    }
+}

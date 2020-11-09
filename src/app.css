@@ -1,0 +1,15 @@
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.container {
+  height: 100%;
+  font-family: 'Microsoft YaHei', 'MicrosoftJhengHei', 'Lantinghei SC', 'Open Sans', Arial, 'Hiragino Sans GB', 'STHeiti', 'WenQuanYi Micro Hei', sans-serif;
+}
+.container .chat-wrapper {
+  height: 100%;
+  display: flex;
+}

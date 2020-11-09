@@ -1,0 +1,27 @@
+.message-wrapper {
+  display: flex;
+  margin: 20px 0;
+  align-items: center;
+}
+.message-wrapper.position-right {
+  flex-direction: row-reverse;
+}
+.message-wrapper.position-right .message-content {
+  display: flex;
+  justify-content: flex-end;
+}
+.message-wrapper.position-right .avatar-container {
+  margin-left: 8px;
+}
+.message-wrapper.position-left .message-content .chat-bubble {
+  background: #ffffff;
+  border-radius: 0 14px 14px 14px;
+  color: #333333;
+}
+.message-wrapper.position-left .avatar-container {
+  margin-right: 8px;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+}
