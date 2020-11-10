@@ -1,7 +1,6 @@
 import React, { useEffect, useContext } from 'react'
 import ConversitionList from '../conversition/ConversitionList'
 import { Context } from '../../context'
-
 import './SideBar.less'
 const SideBar = (props) => {
     const {state, dispatch} = useContext(Context)
@@ -12,7 +11,7 @@ const SideBar = (props) => {
     function getConversitionList(){
         dispatch({
             type: 'getConversitionList',
-            payload: { conversationID: props.conversationID }
+            payload: { uid: state.user.uid }
         })
     }
     return (

@@ -9,6 +9,11 @@ const MessageSendBox = () => {
     const imagePicker = useRef(null)
     const [text, updateText] = useState('')
     const { state, dispatch } = useContext(Context)
+    const { currentConversition: {
+        conversationID,
+        conversationType,
+        userProfile,
+    } } = state
     function onContentChange(e) {
         updateText(e.target.value)
     }
@@ -28,11 +33,10 @@ const MessageSendBox = () => {
         return {
             ID: "C2Cuser1-3933380001-97893043-9",
             clientSequence: 3933380001,
-            conversationID: "C2Cuser1",
+            conversationID,
             conversationSubType: undefined,
-            conversationType: "C2C",
+            conversationType,
             flow: "out",
-            from: "user0",
             isPlaceMessage: 0,
             isRead: true,
             isResend: false,
@@ -45,7 +49,8 @@ const MessageSendBox = () => {
             sequence: 3933380001,
             status: "success",
             time: 1604367218,
-            to: "user1",
+            from: state.user.uid,
+            to: userProfile.uid,
             type: "IMTextElem",
         }
     }

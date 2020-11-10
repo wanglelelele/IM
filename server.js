@@ -34,6 +34,7 @@ io.on('connection', function(socket){
   })
   socket.on('message', function(data){
     console.log('message----', data)
+    data.flow = 'in'
     io.emit('message',data )
   })
 })

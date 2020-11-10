@@ -2,12 +2,13 @@ import React, { useState, useContext } from 'react'
 import { Context } from '../../context'
 import './Login.less'
 export default () => {
-    const [userID, setUserID] = useState('')
+    const [userID, setUserID] = useState('user0')
     const { state, dispatch } = useContext(Context)
     function selectUser(e) {
         setUserID(e.target.value)
     }
     function login() {
+        console.log('user', userID)
         dispatch({ type: 'login', payload: { uid: userID, isLogin: true } })
     }
     return (

@@ -9,6 +9,7 @@ const ConversitionItem = ({conversitionID}) => {
             type: 'checkoutConversation',
             payload: { conversitionID }
         })
+        dispatch({type: 'getMessageList', payload:{conversitionID}})
         // 更新当前会话
         // 获取消息列表
 

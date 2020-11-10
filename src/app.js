@@ -7,20 +7,16 @@ import { Context } from './context'
 import './app.less'
 const App = () => {
     const { state, dispatch } = useContext(Context)
+    const [init, setInit] = useState(false)
     useEffect(() => {
         onUpdateMsgList()
-        ready()
+        // ready()
     }, [])
 
     function onUpdateMsgList() {
 
     }
-
-    function ready() {
-        state.socket.on('message', (obj) => {
-            console.log('msg', obj)
-        })
-    }
+    
     return (
         <div className="container">
             {

@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from 'react'
 import io from 'socket.io-client'
 const initialVal = {
-    user:{
+    user: {
         uname: '',
         uid: '',
         isLogin: false
@@ -17,58 +17,18 @@ const initialVal = {
         autoConnect: true,
     }),
     // 消息数据
-    messages: [{
-        ID: "C2Cuser1-3933380001-97893043-1",
-        clientSequence: 3933380001,
-        conversationID: "C2Cuser1",
-        conversationSubType: undefined,
-        conversationType: "C2C",
-        flow: "out",
-        from: "user0",
-        isPlaceMessage: 0,
-        isRead: true,
-        isResend: false,
-        isRevoked: false,
-        isSystemMessage: false,
-        messagePriority: 0,
-        payload: { text: "你好" },
-        protocol: "JSON",
-        random: 97893043,
-        sequence: 3933380001,
-        status: "success",
-        time: 1604367218,
-        to: "user1",
-        type: "IMTextElem",
-    }, {
-        ID: "C2Cuser1-3934570001-30813017-0",
-        clientSequence: 3934570001,
-        conversationID: "C2Cuser1",
-        conversationSubType: undefined,
-        conversationType: "C2C",
-        flow: "in",
-        from: "user1",
-        isPlaceMessage: 0,
-        isRead: true,
-        isResend: false,
-        isRevoked: false,
-        isSystemMessage: false,
-        messagePriority: 0,
-        payload: { text: "hi" },
-        protocol: "JSON",
-        random: 30813017,
-        sequence: 3934570001,
-        status: "success",
-        time: 1604367297,
-        to: "user0",
-        type: "IMTextElem"
-    }],
+    messages: [],
     // 会话列表
-    conversitions: [{
-        conversitionType: 'C2C',
-        conversitionID: 'C2Cuser1',
-    }],
+    conversitions: [],
     // 会话类型 群 个人
-    currentConversition: { currentConversitionId: 'C2Cuser1', currentConversationType: 'C2C' }
+    currentConversition: {
+        currentConversitionId: '',
+        currentConversationType: '',
+        lastMessage: {},
+        userProfile: {
+            uid: ''
+        }
+    }
 }
 const actions = new Map([
     ['checkoutConversation', getConversition],
@@ -83,19 +43,83 @@ const reducer = (state, action) => {
                 ...state,
                 conversitions: [{
                     conversitionType: 'C2C',
+                    conversitionID: 'C2Cuser0',
+                    lastMessage: {},
+                    userProfile: {
+                        uid: 'user0'
+                    }
+                }, {
+                    conversitionType: 'C2C',
                     conversitionID: 'C2Cuser1',
+                    lastMessage: {},
+                    userProfile: {
+                        uid: 'user1'
+                    }
                 }, {
                     conversitionType: 'GROUP',
                     conversitionID: 'GROUP1',
+                    lastMessage: {},
+                    userProfile: {
+                        uid: 'group1'
+                    }
+                }]
+            }
+        case 'getMessageList':
+            return {
+                ...state,
+                messages: [{
+                    ID: "C2Cuser1-3933380001-97893043-1",
+                    clientSequence: 3933380001,
+                    conversationID: "C2Cuser1",
+                    conversationSubType: undefined,
+                    conversationType: "C2C",
+                    flow: "out",
+                    from: "user0",
+                    isPlaceMessage: 0,
+                    isRead: true,
+                    isResend: false,
+                    isRevoked: false,
+                    isSystemMessage: false,
+                    messagePriority: 0,
+                    payload: { text: "你好" },
+                    protocol: "JSON",
+                    random: 97893043,
+                    sequence: 3933380001,
+                    status: "success",
+                    time: 1604367218,
+                    to: "user1",
+                    type: "IMTextElem",
+                }, {
+                    ID: "C2Cuser1-3934570001-30813017-0",
+                    clientSequence: 3934570001,
+                    conversationID: "C2Cuser1",
+                    conversationSubType: undefined,
+                    conversationType: "C2C",
+                    flow: "in",
+                    from: "user1",
+                    isPlaceMessage: 0,
+                    isRead: true,
+                    isResend: false,
+                    isRevoked: false,
+                    isSystemMessage: false,
+                    messagePriority: 0,
+                    payload: { text: "hi" },
+                    protocol: "JSON",
+                    random: 30813017,
+                    sequence: 3934570001,
+                    status: "success",
+                    time: 1604367297,
+                    to: "user0",
+                    type: "IMTextElem"
                 }]
             }
         case 'checkoutConversation':
+            const currentConversition = state.conversitions.find(item => {
+                return item.conversitionID === action.payload.conversitionID
+            })
             return {
                 ...state,
-                currentConversition: {
-                    currentConversitionId: 'C2Cuser1',
-                    currentConversationType: 'C2C'
-                }
+                currentConversition
             }
         case 'pushMessageList':
             return {
